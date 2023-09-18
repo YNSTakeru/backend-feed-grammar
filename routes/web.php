@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\SectionController;
 use App\Http\Controllers\WordController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,21 +19,21 @@ Route::get("/", function () {
     return view("welcome");
 });
 
-Route::prefix("sections")
-    ->controller(SectionController::class)
-    ->name("sections.")
-    ->group(function () {
-        Route::get("/", "index")->name("index");
-        Route::get("/{id}", "sendQuestions")->name("sendQuestions");
-        Route::get(
-            "/{sectionId}/questions/{questionId}/next",
-            "sendNextQuestion"
-        )->name("sendNextQuestion");
-        Route::get(
-            "/{sectionId}/questions/{questionId}/previous",
-            "sendPreviousQuestion"
-        )->name("sendPreviousQuestion");
-    });
+// Route::prefix("sections")
+//     ->controller(SectionController::class)
+//     ->name("sections.")
+//     ->group(function () {
+//         Route::get("/", "index")->name("index");
+//         Route::get("/{id}", "sendQuestions")->name("sendQuestions");
+//         Route::get(
+//             "/{sectionId}/questions/{questionId}/next",
+//             "sendNextQuestion"
+//         )->name("sendNextQuestion");
+//         Route::get(
+//             "/{sectionId}/questions/{questionId}/previous",
+//             "sendPreviousQuestion"
+//         )->name("sendPreviousQuestion");
+//     });
 
 Route::prefix("questions")
     ->controller(QuestionController::class)

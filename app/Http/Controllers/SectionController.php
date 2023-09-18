@@ -2,25 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Section;
+use App\Http\Resources\SectionCollection;
+use App\Http\Resources\SectionResource;
 use App\Models\Question;
+use App\Models\Section;
 
 class SectionController extends Controller
 {
     public function index()
     {
-        $sections = Section::all();
+        return (new SectionCollection(Section::all()))->toJson(JSON_UNESCAPED_UNICODE);
+    }
 
-        return response()->json(
-            [
-                "status" => true,
-                "sections" => $sections,
-            ],
-            200,
-            [],
-            JSON_UNESCAPED_UNICODE
-        );
+    public function show(Section $section)
+    {
+        return (new SectionResource($section))->toJson(JSON_UNESCAPED_UNICODE);
     }
 
     public function sendQuestions($id)
