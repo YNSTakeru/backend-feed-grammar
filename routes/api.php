@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource("contact", ContactController::class)->only("store");
 Route::apiResource("sections", SectionController::class)->only(["index", "show"]);
+Route::apiResource("questions", QuestionController::class)->only(["index", "show"]);
+Route::apiResource("videos", VideoController::class)->only(["index", "show"]);
 
 Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user();
