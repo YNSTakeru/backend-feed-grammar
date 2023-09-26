@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\QuestionCollection;
 use App\Http\Resources\QuestionResource;
 use App\Models\Question;
-use Spatie\QueryBuilder\QueryBuilder;
+use App\Models\Section;
 
 class QuestionController extends Controller
 {
 
-    public function index()
+    public function index(Section $section)
     {
-        $questions = QueryBuilder::for(Question::class)->allowedFilters("section_id")->paginate()->toJson(JSON_UNESCAPED_UNICODE);
-        return $questions;
+        $questions = $section->questions()->paginate();
+        return new QuestionCollection($questions);
     }
 
     public function show(Question $question)
