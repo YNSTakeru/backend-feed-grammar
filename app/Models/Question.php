@@ -4,50 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Question extends Model
 {
     use HasFactory;
 
-    public function section()
+    protected $fillable = [
+        "section_id",
+        "content",
+        "theme"
+    ];
+
+    public function section(): BelongsTo
     {
         return $this->belongsTo(Section::class);
     }
 
-    public function urls()
+    public function urls(): HasMany
     {
         return $this->hasMany(Url::class);
-    }
-
-    public function scopeSearch($query, $sectionId)
-    {
-        if ($sectionId === null) {
-            return;
-        }
-        $query->where("section_id", "=", $sectionId);
-
-        return $query;
-    }
-
-    public function previous($sectionId)
-    {
-        return $this->where([
-            ["section_id", "=", $sectionId],
-            ["id", "<", $this->id],
-        ])
-            ->orderBy("id", "desc")
-            ->select("id", "content", "theme")
-            ->first();
-    }
-
-    public function next($sectionId)
-    {
-        return $this->where([
-            ["section_id", "=", $sectionId],
-            ["id", ">", $this->id],
-        ])
-            ->orderBy("id", "asc")
-            ->select("id", "content", "theme")
-            ->first();
     }
 }

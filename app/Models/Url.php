@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Video;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Video;
 
 class Url extends Model
 {

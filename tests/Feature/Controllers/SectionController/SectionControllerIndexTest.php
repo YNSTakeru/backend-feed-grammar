@@ -12,8 +12,8 @@ class SectionControllerIndexTest extends TestCase
 
         $response = $this->getJson($route);
 
-        $response->assertOk()->assertJsonCount(2, "sections")->assertJsonStructure([
-            "sections" => [
+        $response->assertOk()->assertJsonCount(2, "data")->assertJsonStructure([
+            "data" => [
                 "*" => ["id", "title", "created_at", "updated_at"],
             ],
         ]);
