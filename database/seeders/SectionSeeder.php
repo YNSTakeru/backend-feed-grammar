@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use DateTime;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use DateTime;
 
 class SectionSeeder extends Seeder
 {
@@ -16,12 +15,12 @@ class SectionSeeder extends Seeder
     {
         DB::table("sections")->insert([
             [
-                "title" => "自動詞と他動詞",
+                "title" => "バラエティ",
                 "created_at" => new DateTime(),
                 "updated_at" => new DateTime(),
             ],
             [
-                "title" => "test",
+                "title" => "自動詞と他動詞",
                 "created_at" => new DateTime(),
                 "updated_at" => new DateTime(),
             ],

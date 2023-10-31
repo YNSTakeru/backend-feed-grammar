@@ -18,9 +18,9 @@ class QuestionController extends Controller
 
     public function show(Question $question)
     {
-        $previousId = Question::where([['section_id', '=', $question->section_id], ["id", "<", $question->id]])->max("id");
-        $nextId = Question::where([['section_id', '=', $question->section_id], ["id", ">", $question->id]])->min("id");
+        $previousQuestion = Question::where([['section_id', '=', $question->section_id], ["id", "<", $question->id]])->orderBy('id', 'desc')->first();
+        $nextQuestion = Question::where([['section_id', '=', $question->section_id], ["id", ">", $question->id]])->first();
 
-        return (new QuestionResource(["previousId" => $previousId, "nextId" => $nextId]))->toJson(JSON_UNESCAPED_UNICODE);
+        return (new QuestionResource(["previousQuestion" => $previousQuestion, "nextQuestion" => $nextQuestion]))->toJson(JSON_UNESCAPED_UNICODE);
     }
 }
