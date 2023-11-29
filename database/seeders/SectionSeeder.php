@@ -20,7 +20,17 @@ class SectionSeeder extends Seeder
                 "updated_at" => new DateTime(),
             ],
             [
-                "title" => "自動詞と他動詞",
+                "title" => "Tの発音",
+                "created_at" => new DateTime(),
+                "updated_at" => new DateTime(),
+            ],
+            [
+                "title" => "寸止め",
+                "created_at" => new DateTime(),
+                "updated_at" => new DateTime(),
+            ],
+            [
+                "title" => "連結",
                 "created_at" => new DateTime(),
                 "updated_at" => new DateTime(),
             ],
